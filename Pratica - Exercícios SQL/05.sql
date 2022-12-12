@@ -1,0 +1,1 @@
+desafio_sql_b672418d=# DELETE FROM clientes WHERE nome='Orlando Pequeno Jesus';
