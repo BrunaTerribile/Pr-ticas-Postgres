@@ -2,7 +2,7 @@ CREATE TABLE customers(
     id SERIAL PRIMARY KEY,
     "fullName" TEXT NOT NULL,
     cpf VARCHAR(11) NOT NULL UNIQUE,
-    email TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL
 )
 
@@ -13,14 +13,9 @@ CREATE TABLE customerPhones(
     type TEXT NOT NULL,
 )
 
-CREATE TABLE customerAdresses(
+CREATE TABLE states(
     id SERIAL PRIMARY KEY,
-    "customerId" INTEGER NOT NULL REFERENCES "customers"("id"),
-    street TEXT NOT NULL,
-    number VARCHAR(5) NOT NULL,
-    complement TEXT NOT NULL,
-    "postalCode" NUMBER NOT NULL,
-    "cityId" INTEGER NOT NULL REFERENCES "cities"("id")
+    name TEXT NOT NULL
 )
 
 CREATE TABLE cities(
@@ -29,9 +24,14 @@ CREATE TABLE cities(
     "stateId" INTEGER NOT NULL REFERENCES "states"("id"),
 )
 
-CREATE TABLE states(
+CREATE TABLE customerAdresses(
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL
+    "customerId" INTEGER NOT NULL REFERENCES "customers"("id"),
+    street TEXT NOT NULL,
+    number VARCHAR(5) NOT NULL,
+    complement TEXT NOT NULL,
+    "postalCode" NUMBER NOT NULL,
+    "cityId" INTEGER NOT NULL REFERENCES "cities"("id")
 )
 
 CREATE TABLE bankAccount(
